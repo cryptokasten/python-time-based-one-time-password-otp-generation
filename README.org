@@ -1,0 +1,51 @@
+#+TITLE: Python Time-based One-time Password (OTP) generation
+#+OPTIONS: ^:nil
+#+PROPERTY: header-args:sh :session *shell python-time-based-one-time-password-otp-generation sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell python-time-based-one-time-password-otp-generation python* :results silent raw
+
+** System environment
+
+- Debian 9.11
+
+- Python 3.7.0
+
+Python modules:
+
+- pyotp==2.3.0
+
+** Install requirements
+
+#+BEGIN_SRC sh
+pip install pyotp==2.3.0
+#+END_SRC
+
+** Imports
+
+#+BEGIN_SRC python :tangle src/otp.py
+import pyotp
+#+END_SRC
+
+** Initialize seed
+
+#+BEGIN_SRC python :tangle src/otp.py
+seed = "<CODE_FROM_SERVICE>"
+#+END_SRC
+
+** Generate Time-based One-time Password
+
+#+BEGIN_SRC python :results replace code :tangle src/otp.py
+pin = pyotp.totp.TOTP(seed).now()
+pin
+#+END_SRC
+
+** Print pin
+
+#+BEGIN_SRC python :tangle src/otp.py
+print(pin)
+#+END_SRC
+
+** References
+
+- https://en.wikipedia.org/wiki/Time-based_One-time_Password_algorithm
+
+- https://pyotp.readthedocs.io/en/latest/
